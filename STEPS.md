@@ -1,8 +1,4 @@
-## Initial setup
-
--   Create a new Next.js app with **Turbopack**
-
-# Theory
+# Next.js Theory
 
 ## Server Side Strategies
 
@@ -99,4 +95,58 @@ Add the files with the right names:
 -   `opengraph-image.jpg`
 -   `twitter-image.png`
 
-# Development
+# Development Steps
+
+## Initial setup
+
+-   Create a new Next.js app with **Turbopack**
+-   Modify the `package.json` to comfortable with **React 19**:
+    ```json
+    {
+        "packageManager": "npm@10.8.1",
+        "overrides": {
+            "react": "$react",
+            "react-dom": "$react-dom"
+        }
+    }
+    ```
+    This will ensure that the latest versions of React are being used across all the packages in this project.
+
+## Authentication with Auth.js (NextAuth)
+-   Ref: [Auth.js Document](https://authjs.dev/getting-started/installation?framework=Next.js)
+-   Install the NextAuth package:
+    ```bash
+    npm install next-auth@beta
+    ```
+-   Setup environment:
+    ```bash
+    npx auth secret
+    ```
+-   Configure:
+    - `./auth.ts`
+    ```typescript
+    import NextAuth from "next-auth";
+ 
+    export const { handlers, signIn, signOut, auth } = NextAuth({
+        providers: [],
+    });
+    ```
+    - `./app/api/auth/[...nextauth]/route.ts`
+    ```typescript
+    import { handlers } from "@/auth";
+
+    export const { GET, POST } = handlers;
+    ```
+    - Skip the optional step to create a middleware
+
+### GitHub Provider Authentication
+-   **Creating an OAuth app**
+    Go to the GitHub > Settings > Developer settings > OAuth Apps > New OAuth App
+-   Copy and past the Client ID into our `.env` file
+-   Generate new client secret and paste it as well
+-   Update the `auth.js` configuration
+-   Implement the the Navbar component with user authentication (`./components/navbar.tsx`)
+-   Draw the structural diagram for the authentication flow (`./public/draw/auth.drawio`)
+
+## Theming and Fonts
+-   Update the `tailwind.config.ts`
