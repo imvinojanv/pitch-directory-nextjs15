@@ -1,11 +1,29 @@
-import Link from 'next/link'
-import React from 'react'
+import SearchForm from '@/components/search-form';
 
-const Home = () => {
+const Home = async ({
+    searchParams,
+}: {
+    searchParams: Promise<{ query?: string }>;
+}) => {
+    const query = (await searchParams).query;
+
     return (
-        <div className=''>
-            HOME
-        </div>
+        <>
+            <section className="pink_container">
+                <h1 className="heading">
+                    Pitch Your Startup, <br />
+                    Connect With Entrepreneurs
+                </h1>
+
+                {/* We use this '!' mark to override the existing styles */}
+                <p className="sub-heading !max-w-3xl">
+                    Submit Ideas, Vote on Pitches, and Get Noticed in Virtual
+                    Competitions.
+                </p>
+
+                <SearchForm query={query} />
+            </section>
+        </>
     )
 }
 

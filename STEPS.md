@@ -113,6 +113,7 @@ Add the files with the right names:
     This will ensure that the latest versions of React are being used across all the packages in this project.
 
 ## Authentication with Auth.js (NextAuth)
+
 -   Ref: [Auth.js Document](https://authjs.dev/getting-started/installation?framework=Next.js)
 -   Install the NextAuth package:
     ```bash
@@ -123,23 +124,29 @@ Add the files with the right names:
     npx auth secret
     ```
 -   Configure:
-    - `./auth.ts`
+
+    -   `./auth.ts`
+
     ```typescript
     import NextAuth from "next-auth";
- 
+
     export const { handlers, signIn, signOut, auth } = NextAuth({
         providers: [],
     });
     ```
-    - `./app/api/auth/[...nextauth]/route.ts`
+
+    -   `./app/api/auth/[...nextauth]/route.ts`
+
     ```typescript
     import { handlers } from "@/auth";
 
     export const { GET, POST } = handlers;
     ```
-    - Skip the optional step to create a middleware
+
+    -   Skip the optional step to create a middleware
 
 ### GitHub Provider Authentication
+
 -   **Creating an OAuth app**
     Go to the GitHub > Settings > Developer settings > OAuth Apps > New OAuth App
 -   Copy and past the Client ID into our `.env` file
@@ -149,6 +156,7 @@ Add the files with the right names:
 -   Draw the structural diagram for the authentication flow (`./public/draw/auth.drawio`)
 
 ## Theming and Fonts
+
 -   Update the `tailwind.config.ts`
 -   Import custom fonts
 -   Added some custom utility classes for styling in `./app/globals.css`
@@ -156,3 +164,26 @@ Add the files with the right names:
     ```bash
     npx shadcn@latest init
     ```
+
+## Hero section
+
+-   Design the hero section
+-   Add the **Search Form component** to the hero section (`./components/search-form.tsx`)
+
+    -   Implement the search functionality with Next.js's form server action.
+        Ref: [next/form](https://nextjs.org/docs/app/api-reference/components/form)
+
+        ```typescript
+        import Form from "next/form";
+
+        export default function Page() {
+            return (
+                <Form action="/search">
+                    {/* On submission, the input value will be appended to 
+                        the URL, e.g. /search?query=abc */}
+                    <input name="query" />
+                    <button type="submit">Submit</button>
+                </Form>
+            );
+        }
+        ```
