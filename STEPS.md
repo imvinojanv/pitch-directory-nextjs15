@@ -150,3 +150,9 @@ Add the files with the right names:
 
 ## Theming and Fonts
 -   Update the `tailwind.config.ts`
+-   Import custom fonts
+-   Added some custom utility classes for styling in `./app/globals.css`
+-   Install Shadcn UI
+    ```bash
+    npx shadcn@latest init
+    ```
