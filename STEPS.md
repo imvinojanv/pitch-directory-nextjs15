@@ -187,3 +187,25 @@ Add the files with the right names:
             );
         }
         ```
+
+## Sanity Setup
+-   Login & Create a new project in Sanity
+-   Install the Sanity CLI
+    ```bash
+    npm create sanity@latest -- --project 428lzys8 --dataset production --template clean --typescript
+    ```
+-   Install a sanity package for Next.js
+    ```bash
+    npm install next-sanity@canary
+    ```
+-   **File structure of Sanity**:
+    -   `./sanity/lib/client.ts`: Sanity read client for fetching data through queries.
+    -   `./sanity/lib/image.ts`: Image URL builder for Sanity images. We removed this as we are using the markdown plugin instead.
+    -   `./sanity/schemaTypes/index.ts`: Own sanity schemas and export them. Entire application knows what kind of fields will each document will have.
+    -   `./sanity/env.ts`: Which kind of envs we need for our application.
+    -   `./sanity/structure.ts`: Where you can decide how do you arrange your schemas. 
+    -   `./app/studio/[[...tool]]/page.tsx`: Where you can create your own studio.
+
+## All Startups and Startup Cards section
+-   Design the Startup card section
+-   Create a util function to format the date (`./lib/utils.ts`)
